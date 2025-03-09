@@ -1,45 +1,38 @@
+import allure
 import pytest
-from pytest import fixture
-
-from api import ServiceAPI
-from data import PostData
-from database import PostsDatabase
-
-
-@pytest.fixture
-def api_route() -> ServiceAPI:
-    """Returns WordPress API URL."""
-    return ServiceAPI()
+from allure_commons.types import AttachmentType
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 
-@pytest.fixture
-def sql_db() -> PostsDatabase:
-    """Returns Posts database module."""
-    return PostsDatabase()
+pytest_plugins = 'tests.fixtures'
 
 
-@pytest.fixture
-def test_data_for_db() -> PostData:
-    return PostData().generate_post_data()
+@pytest.fixture(scope="function")
+def browser(request):
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
+    driver.set_window_size(1920, 1080)
+    yield driver
+    driver.quit()
 
 
-@pytest.fixture
-def test_data_for_api(request) -> dict:
-    """Returns test data for requests functions."""
-    fields = request.param
-    post_data = PostData().generate_post_data(**fields)
-    return {'title': post_data.title,
-            'content': post_data.content,
-            'status': post_data.status}
+def pytest_addoption(parser):
+    parser.addoption("--browser", action="store", default="chrome")
+    parser.addoption("--grid", action="store_true", default=False)
 
 
-@pytest.fixture
-def delete_data(request, sql_db: fixture):
-    data_to_delete = list()
-    yield data_to_delete
-    for data_id in data_to_delete:
-        try:
-            sql_db.delete_post(str(data_id))
-        except Exception as exc:
-            exc.add_note('Data deletion failed')
-            raise
+@pytest.hookimpl(tryfirst=True)
+def pytest_runtest_makereport(item, call):
+    if call.excinfo is not None:
+        driver = item.funcargs.get('browser')
+        if driver:
+            with allure.step('Скриншот упавшего теста'):
+                allure.attach(driver.get_screenshot_as_png(),
+                              name='Test failure screenshot',
+                              attachment_type=AttachmentType.PNG)
