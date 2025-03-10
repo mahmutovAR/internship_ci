@@ -21,6 +21,7 @@ def browser(request):
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
+    options.add_argument('--disable-dev-shm-usage')
     # service = Service(ChromeDriverManager().install())
     chrome_driver_path = getenv('CHROME_DRIVER_PATH')
     service = Service(chrome_driver_path)
