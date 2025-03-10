@@ -17,7 +17,8 @@ class PageUrls:
 
     drag_and_drop_page = getenv('DRAG_AND_DROP_PAGE')
     tabs_page = getenv('TABS_PAGE')
-    alerts_page = getenv('ALERTS_PAGE')
+    # alerts_page = getenv('ALERTS_PAGE')
+    alerts_page = "http://way2automation.com/way2auto_jquery/alert.php"
     basic_auth_page = getenv('BASIC_AUTH_PAGE')
 
 
