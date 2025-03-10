@@ -5,10 +5,16 @@ import pytest
 from allure_commons.types import AttachmentType
 from dotenv import load_dotenv
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.chrome.service import Service
 # from webdriver_manager.chrome import ChromeDriverManager
-
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.edge.service import Service as EdgeService
 
 pytest_plugins = 'tests.fixtures'
 
@@ -18,14 +24,30 @@ load_dotenv()
 
 @pytest.fixture(scope="function")
 def browser(request):
-    options = Options()
+    # options = Options()
+    # options.add_argument("--headless")
+    # options.add_argument("--no-sandbox")
+    # options.add_argument('--disable-dev-shm-usage')
+    # # service = Service(ChromeDriverManager().install())
+    # chrome_driver_path = getenv('CHROME_DRIVER_PATH')
+    # service = Service(chrome_driver_path)
+    # driver = webdriver.Chrome(service=service, options=options)
+    # driver.set_window_size(1920, 1080)
+    # yield driver
+    # driver.quit()
+
+    options = EdgeOptions()
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
-    options.add_argument('--disable-dev-shm-usage')
-    # service = Service(ChromeDriverManager().install())
-    chrome_driver_path = getenv('CHROME_DRIVER_PATH')
-    service = Service(chrome_driver_path)
-    driver = webdriver.Chrome(service=service, options=options)
+    edge_driver_path = getenv('MSEDGE_DRIVER_PATH')
+    driver = webdriver.Edge(service=EdgeService(edge_driver_path), options=options)
+
+
+    # options = FirefoxOptions()
+    # options.add_argument("-headless")
+    # options.add_argument("--no-sandbox")
+    # gecko_driver_path = getenv('GECKO_DRIVER_PATH')
+    # driver = webdriver.Firefox(service=FirefoxService(gecko_driver_path), options=options)
     driver.set_window_size(1920, 1080)
     yield driver
     driver.quit()
