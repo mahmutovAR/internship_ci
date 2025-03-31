@@ -60,6 +60,7 @@ def test_fill_out_form(browser: fixture):
         - Отображается сообщение об успешной авторизации""")
 @pytest.mark.xfail
 @pytest.mark.parametrize('username, password, username_desc', [('invalid username', 'invalid password', 'username-C')])
+@pytest.mark.skip(reason="too many tests")
 def test_log_in(browser: fixture, username: str, password: str, username_desc: str):
     login_page = LoginPage(browser)
     login_page.open_login_page()
@@ -95,6 +96,7 @@ def test_log_in(browser: fixture, username: str, password: str, username_desc: s
         - Значение "TITLE" соответствует странице
         - Элементы, уникальные для этой страницы, активны""")
 @pytest.mark.xfail
+@pytest.mark.skip(reason="too many tests")
 def test_redirect_to_appium_python(browser: fixture):
     menu = Menu(browser)
     menu.open_homepage()

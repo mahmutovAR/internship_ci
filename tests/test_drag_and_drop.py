@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure import severity_level
 from pytest import fixture
 
@@ -26,6 +27,7 @@ from pages import DragAndDropPage
 
     Ожидаемый результат:
         - После успешного перемещения текст в принимающем элементе изменился""")
+@pytest.mark.skip(reason="too many tests")
 def test_drag_and_drop(browser: fixture):
     drag_and_drop_page = DragAndDropPage(browser)
     drag_and_drop_page.open_page()

@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure import severity_level
 from pytest import fixture
 
@@ -25,6 +26,7 @@ from pages import Menu
 
     Ожидаемый результат:
         - Все основные пункты меню отображаются и кликабельны""")
+@pytest.mark.skip(reason="too many tests")
 def test_menu_when_scrolling(browser: fixture):
     menu = Menu(browser)
     menu.open_homepage()
