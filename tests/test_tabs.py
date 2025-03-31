@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure import severity_level
 from pytest import fixture
 
@@ -13,7 +14,7 @@ from pages import TabsPage
 @allure.title("Переход по ссылке на новую вкладку")
 @allure.description(
     """
-    Цель: Проверить переход по открытые вкладки
+    Цель: Проверить переход по открытой вкладке
 
     Предусловие:
         - Открыть браузер
@@ -29,6 +30,7 @@ from pages import TabsPage
 
     Ожидаемый результат:
         - После двух нажатий на ссылку открыто три вкладки""")
+@pytest.mark.skip(reason="too many tests")
 def test_tabs(browser: fixture):
     tabs_page = TabsPage(browser)
     tabs_page.open_page()

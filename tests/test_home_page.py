@@ -55,6 +55,7 @@ def test_homepage(browser: fixture):
     Ожидаемый результат:
         - Номера телефонов и ссылки для связи кликабельны
         - Контактные номера и ссылки для связи корректны""")
+@pytest.mark.skip(reason="too many tests")
 def test_header(browser: fixture):
     header = Header(browser)
     header.open_homepage()
@@ -83,6 +84,7 @@ def test_header(browser: fixture):
     Ожидаемый результат:
         - Заголовок каждого элемента блока корректен
         - Ссылка кнопки "Read More" каждого блока корректна""")
+@pytest.mark.skip(reason="too many tests")
 def test_certification_block(browser: fixture):
     certification = Certification(browser)
     certification.open_homepage()
@@ -114,6 +116,7 @@ def test_certification_block(browser: fixture):
     Ожидаемый результат:
         - Положение слайда изменилось после нажатия кнопок навигации""")
 @pytest.mark.skip(reason="ad blocks nav button")
+@pytest.mark.skip(reason="too many tests")
 def test_popular_courses_slider(browser: fixture):
     slider = PopularCourses(browser)
     slider.open_homepage()

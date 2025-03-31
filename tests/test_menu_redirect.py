@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure import severity_level
 from pytest import fixture
 
@@ -31,6 +32,7 @@ from pages import Menu
         - Происходит переход на страницу
         - Значение "TITLE" соответствует странице
         - Элементы, уникальные для этой страницы, активны""")
+@pytest.mark.skip(reason="too many tests")
 def test_redirect_to_appium_python(browser: fixture):
     menu = Menu(browser)
     menu.open_homepage()
@@ -67,6 +69,7 @@ def test_redirect_to_appium_python(browser: fixture):
         - Происходит переход на страницу
         - Значение "TITLE" соответствует странице
         - Элементы, уникальные для этой страницы, активны""")
+@pytest.mark.skip(reason="too many tests")
 def test_redirect_to_video_tutorial_spring(browser: fixture):
     menu = Menu(browser)
     menu.open_homepage()

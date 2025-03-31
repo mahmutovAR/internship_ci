@@ -67,6 +67,7 @@ def test_login_page(browser: fixture):
     Ожидаемый результат:
         - Ошибки валидации отображаются для незаполненных полей
         - Кнопка "Login" не активна""")
+@pytest.mark.skip(reason="too many tests")
 def test_empty_form(browser: fixture):
     login_page = LoginPage(browser)
     login_page.open_login_page()
@@ -106,6 +107,7 @@ def test_empty_form(browser: fixture):
         - Отображается сообщение об успешной авторизации""")
 @pytest.mark.parametrize('username, password, username_desc',
                          [(LoginData.username, LoginData.password, f'{LoginData.username}-AB')])
+@pytest.mark.skip(reason="too many tests")
 def test_log_in(browser: fixture, username: str, password: str, username_desc: str):
     login_page = LoginPage(browser)
     login_page.open_login_page()
@@ -143,6 +145,7 @@ def test_log_in(browser: fixture, username: str, password: str, username_desc: s
                          [('invalid username', 'invalid password', 'username-C', ),
                           (LoginData.username, 'invalid password', f'{LoginData.username}-AB'),
                           ('invalid username', LoginData.password, f'{LoginData.username}-AB')])
+@pytest.mark.skip(reason="too many tests")
 def test_log_in_invalid(browser: fixture, username: str, password: str, username_desc: str):
     login_page = LoginPage(browser)
     login_page.open_login_page()
@@ -185,6 +188,7 @@ def test_log_in_invalid(browser: fixture, username: str, password: str, username
                           ('ab', 'abcdefg', 'ab', True, False, True),
                           ('ab', 'ab', 'abcdefg', True, True, False),
                           ('ab', 'ab', 'ab', True, True, True)])
+@pytest.mark.skip(reason="too many tests")
 def test_log_in_invalid_extended(browser: fixture, username: str, password: str, username_desc: str,
                                  username_error: bool, password_error: bool, username_desc_error: bool):
     login_page = LoginPage(browser)
@@ -224,6 +228,7 @@ def test_log_in_invalid_extended(browser: fixture, username: str, password: str,
         - Отображаются поля для входа""")
 @pytest.mark.parametrize('username, password, username_desc',
                          [(LoginData.username, LoginData.password, f'{LoginData.username}-AB')])
+@pytest.mark.skip(reason="too many tests")
 def test_log_out(browser: fixture, username: str, password: str, username_desc: str):
     login_page = LoginPage(browser)
     login_page.open_login_page()

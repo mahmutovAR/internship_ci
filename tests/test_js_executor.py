@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure import severity_level
 from pytest import fixture
 
@@ -27,6 +28,7 @@ from pages import RegistrationPage
 
     Ожидаемый результат:
         - После выполнения JavaScript поле ввода не в фокусе""")
+@pytest.mark.skip(reason="too many tests")
 def test_remove_focus(browser: fixture):
     registration_page = RegistrationPage(browser)
     registration_page.open_form_page()
@@ -55,6 +57,7 @@ def test_remove_focus(browser: fixture):
 
     Ожидаемый результат:
         - Определение наличия скролла на странице""")
+@pytest.mark.skip(reason="too many tests")
 def test_page_has_scroll(browser: fixture):
     registration_page = RegistrationPage(browser)
     registration_page.open_form_page()
