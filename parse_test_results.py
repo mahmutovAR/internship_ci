@@ -15,3 +15,8 @@ environ['TEST_RESULT_TOTAL'] = total
 environ['TEST_RESULT_PASSED'] = str(passed)
 environ['TEST_RESULT_SKIPPED'] = skipped
 environ['TEST_RESULT_FAILED'] = failed
+
+print('TEST RESULTS:', environ['TEST_RESULT_TOTAL'],
+environ['TEST_RESULT_PASSED'],
+environ['TEST_RESULT_SKIPPED'],
+environ['TEST_RESULT_FAILED'])
