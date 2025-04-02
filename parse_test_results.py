@@ -1,5 +1,4 @@
 import xml.etree.ElementTree as ET
-from os import environ
 
 
 tree = ET.parse('test_results')
@@ -11,12 +10,10 @@ skipped = testsuite.get('skipped')
 total = testsuite.get('tests')
 passed = int(total) - int(skipped) - int(failed)
 
-environ['TEST_RESULT_TOTAL'] = total
-environ['TEST_RESULT_PASSED'] = str(passed)
-environ['TEST_RESULT_SKIPPED'] = skipped
-environ['TEST_RESULT_FAILED'] = failed
+output_data = f"""Tests: {total}\n
+Passed: {passed}\n
+Skipped: {skipped}\n
+Failed: {failed}"""
 
-print(f"TEST_RESULT_TOTAL={total}")
-print(f"TEST_RESULT_PASSED={passed}")
-print(f"TEST_RESULT_SKIPPED={skipped}")
-print(f"TEST_RESULT_FAILED={failed}")
+with open('tests_output.txt', 'w') as file_to_write:
+    file_to_write.write(output_data)
