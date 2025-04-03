@@ -1,5 +1,4 @@
 import xml.etree.ElementTree as ET
-from os import environ
 
 
 tree = ET.parse('test_results')
@@ -9,7 +8,9 @@ testsuite = root.find('testsuite')
 failed = testsuite.get('failures')
 skipped = testsuite.get('skipped')
 total = testsuite.get('tests')
+timestamp = testsuite.get('timestamp')
 passed = int(total) - int(skipped) - int(failed)
+print(f'path = {__file__}, timestamp = {timestamp}')
 
 output_data = f"TOTAL_TESTS={total}\nPASSED_TESTS={passed}\nSKIPPED_TESTS={skipped}\nFAILED_TESTS={failed}"
 
