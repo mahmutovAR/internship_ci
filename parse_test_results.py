@@ -11,7 +11,10 @@ skipped = testsuite.get('skipped')
 total = testsuite.get('tests')
 passed = int(total) - int(skipped) - int(failed)
 
-environ['EMAIL_CONTENT'] = f"""<p>Tests: {total}<br>
+output_data = f"""<p>Tests: {total}<br>
 Passed: {passed}<br>
 Skipped: {skipped}<br>
 Failed: {failed}</p>"""
+
+with open('tests_output.txt', 'w') as file_to_write:
+    file_to_write.write(output_data)
