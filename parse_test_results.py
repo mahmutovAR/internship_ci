@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
 
-tree = ET.parse('test_results')
+tree = ET.parse('pytest_results')
 root = tree.getroot()
 
 testsuite = root.find('testsuite')
@@ -12,5 +12,5 @@ passed = int(total) - int(skipped) - int(failed)
 
 output_data = f"TOTAL_TESTS={total}\nPASSED_TESTS={passed}\nSKIPPED_TESTS={skipped}\nFAILED_TESTS={failed}"
 
-with open('tests_output_err.txt', 'w') as file_to_write:
+with open('tests_output.txt', 'w') as file_to_write:
     file_to_write.write(output_data)
