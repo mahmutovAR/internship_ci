@@ -10,7 +10,14 @@ skipped = testsuite.get('skipped')
 total = testsuite.get('tests')
 passed = int(total) - int(skipped) - int(failed)
 
-output_data = f"TOTAL_TESTS={total}\nPASSED_TESTS={passed}\nSKIPPED_TESTS={skipped}\nFAILED_TESTS={failed}"
+output_data = f"""
+<p>
+TOTAL_TESTS = {total}<br>
+PASSED_TESTS = {passed}<br>
+SKIPPED_TESTS = {skipped}<br>
+FAILED_TESTS = {failed}
+</p>
+"""
 
-with open('pytest_output.txt', 'w') as file_to_write:
+with open('pytest_output.html', 'w') as file_to_write:
     file_to_write.write(output_data)

@@ -13,3 +13,6 @@ venv/
 ENV/
 allure-results/
 allure-report/
+pytest_output.html
+pytest_results
+report.zip
