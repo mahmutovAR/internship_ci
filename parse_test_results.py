@@ -12,5 +12,5 @@ passed = int(total) - int(skipped) - int(failed)
 
 output_data = f"TOTAL_TESTS={total}\nPASSED_TESTS={passed}\nSKIPPED_TESTS={skipped}\nFAILED_TESTS={failed}"
 
-with open('tests_output.txt', 'w') as file_to_write:
+with open('pytest_output.txt', 'w') as file_to_write:
     file_to_write.write(output_data)
