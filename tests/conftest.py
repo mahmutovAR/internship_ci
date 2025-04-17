@@ -10,7 +10,7 @@ pytest_plugins = 'tests.fixtures'
 
 @pytest.fixture(scope="function")
 def browser(request):
-    hub_url = 'http://128.0.6613.18:4444/wd/hub'
+    hub_url = 'http://selenoid_chrome:4444/wd/hub'
     options = Options()
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
