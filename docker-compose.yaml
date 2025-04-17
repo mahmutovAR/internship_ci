@@ -1,0 +1,15 @@
+services:
+  selenoid_chrome:
+    image: selenoid/chrome:128.0
+    container_name: selenoid_chrome
+    ports:
+      - "4444:4444"
+
+  ui_tests:
+    build: .
+    command: pytest -n 7 --disable-warnings --alluredir=/ui_tests/allure-results --clean-alluredir
+    volumes:
+      - .:/ui_tests
+    depends_on:
+      selenoid_chrome:
+        condition: service_started
