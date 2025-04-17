@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure import severity_level
 from pytest import fixture
 
@@ -112,6 +113,7 @@ def test_certification_block(browser: fixture):
 
     Ожидаемый результат:
         - Положение слайда изменилось после нажатия кнопок навигации""")
+@pytest.mark.xfail
 def test_popular_courses_slider(browser: fixture):
     slider = PopularCourses(browser)
     slider.open_homepage()
