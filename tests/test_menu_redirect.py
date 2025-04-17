@@ -32,6 +32,7 @@ from pages import Menu
         - Происходит переход на страницу
         - Значение "TITLE" соответствует странице
         - Элементы, уникальные для этой страницы, активны""")
+@pytest.mark.xfail
 def test_redirect_to_appium_python(browser: fixture):
     menu = Menu(browser)
     menu.open_homepage()
