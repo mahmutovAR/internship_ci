@@ -1,5 +1,3 @@
-from os.path import abspath, dirname
-from os.path import join as os_path_join
 from random import choice, randrange, sample
 
 import allure

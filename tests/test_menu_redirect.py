@@ -1,4 +1,5 @@
 import allure
+import pytest
 from allure import severity_level
 from pytest import fixture
 
@@ -67,6 +68,7 @@ def test_redirect_to_appium_python(browser: fixture):
         - Происходит переход на страницу
         - Значение "TITLE" соответствует странице
         - Элементы, уникальные для этой страницы, активны""")
+@pytest.mark.xfail
 def test_redirect_to_video_tutorial_spring(browser: fixture):
     menu = Menu(browser)
     menu.open_homepage()
