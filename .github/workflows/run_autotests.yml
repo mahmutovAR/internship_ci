@@ -4,9 +4,12 @@ on:
   push:
     branches:
       - master
+      - ci_docker
   pull_request:
     branches:
       - master
+      - master
+
 
 jobs:
   tests_and_report:
@@ -50,8 +53,21 @@ jobs:
       ALT_AUTH_COOKIES_PASSWORD: ${{ vars.ALT_AUTH_COOKIES_PASSWORD }}
 
     steps:
+      - name: Set up xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+
+      - name: Start xvfb
+        run: |
+          export DISPLAY=:99
+          nohup Xvfb :99 &
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build and run containers
-        run: docker compose up
+      - name: Install packages
+        run: pip install -r requirements.txt
+
+      - name: Run UI tests
+        run: pytest -n 7 --disable-warnings --alluredir=allure-results --clean-alluredir --ignore=tests/bdd/
