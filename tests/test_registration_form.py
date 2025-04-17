@@ -51,8 +51,7 @@ from pages import RegistrationPage
                            'country': 'India',
                            'date_of_birth_month': 1,
                            'date_of_birth_day': 1,
-                           'date_of_birth_year': 2014,
-                           'picture_path': os_path_join(dirname(abspath(__file__)), 'picture', 'ebersteiger.jpg')}],
+                           'date_of_birth_year': 2014}],
                          indirect=True)
 def test_fill_out_form(browser: fixture, registration_form_data: fixture):
     login_page = RegistrationPage(browser)
@@ -69,8 +68,6 @@ def test_fill_out_form(browser: fixture, registration_form_data: fixture):
     login_page.fill_phone(form_data.phone)
     login_page.fill_username(form_data.username)
     login_page.fill_email(form_data.email)
-    if form_data.picture_path:
-        login_page.choose_picture(form_data.picture_path)
     login_page.fill_about(form_data.about)
     login_page.fill_password(form_data.password)
     login_page.fill_confirm_password(form_data.confirm_password)
