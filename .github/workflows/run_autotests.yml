@@ -3,7 +3,10 @@ name: Run UI tests in Docker containers, generate and publish Allure report on G
 on:
   push:
     branches:
-      - ci_docker
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   tests_and_report:
