@@ -23,6 +23,10 @@ Run tests:
 ```commandline
 pytest
 ```
+Run tests and generate Allure report:
+```commandline
+./run_pytest.sh
+```
 ***
 
 
