@@ -9,6 +9,7 @@ services:
 
   ui_tests:
     build: .
+    container_name: ui_autotests
     environment:
       HOME_PAGE: ${HOME_PAGE}
       REGISTRATION_PAGE: ${REGISTRATION_PAGE}
