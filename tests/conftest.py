@@ -16,7 +16,6 @@ def browser(request):
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
-
     driver = webdriver.Remote(command_executor=hub_url, options=options)
     yield driver
     driver.quit()
