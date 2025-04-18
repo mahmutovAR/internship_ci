@@ -62,6 +62,12 @@ jobs:
       - name: Build containers
         run: docker compose up -d
 
+      - name: Debug - Show container status
+        run: docker-compose ps -a
+
+      - name: Debug - Show container logs
+        run: docker logs ui_autotests
+
       - name: Wait for container
         run: |
             until docker-compose ps | grep 'ui_autotests' | grep 'Up'; do
