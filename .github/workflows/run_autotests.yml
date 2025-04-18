@@ -63,7 +63,7 @@ jobs:
         run: docker compose up -d
 
       - name: Run tests
-        run: docker compose exec -t ui_tests pytest -n 7 --disable-warnings --alluredir=/res/allure-results --clean-alluredir
+        run: docker compose exec -t ui_autotests pytest -n 7 --disable-warnings --alluredir=/res/allure-results --clean-alluredir
 
       - name: Get Allure data
         run: docker cp $(docker compose ps -q ui_tests):/res/allure-results ./allure-results
