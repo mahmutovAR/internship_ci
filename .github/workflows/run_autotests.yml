@@ -53,9 +53,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build and run containers
+      - name: Build containers
         run: docker compose up
-        
+
+      - name: Run tests
+        run: docker compose exec -t ui_tests pytest -n 7 --disable-warnings --alluredir=/res/allure-results --clean-alluredir
+
+      - name: Get Allure data
+        run: docker cp $(docker compose ps -q ui_tests):/res/allure-results ./allure-results
+
       - name: Generate Allure report
         uses: simple-elf/allure-report-action@v1.9
         if: always()
@@ -72,3 +78,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./allure-report
+
+      - name: Down containers
+        if: always()
+        run: docker compose down
