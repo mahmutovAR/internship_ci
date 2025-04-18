@@ -21,12 +21,12 @@ def browser(request):
     driver.quit()
 
 
-@pytest.hookimpl(tryfirst=True)
-def pytest_runtest_makereport(item, call):
-    if call.excinfo is not None:
-        driver = item.funcargs.get('browser')
-        if driver:
-            with allure.step('Скриншот упавшего теста'):
-                allure.attach(driver.get_screenshot_as_png(),
-                              name='Test failure screenshot',
-                              attachment_type=AttachmentType.PNG)
+# @pytest.hookimpl(tryfirst=True)
+# def pytest_runtest_makereport(item, call):
+#     if call.excinfo is not None:
+#         driver = item.funcargs.get('browser')
+#         if driver:
+#             with allure.step('Скриншот упавшего теста'):
+#                 allure.attach(driver.get_screenshot_as_png(),
+#                               name='Test failure screenshot',
+#                               attachment_type=AttachmentType.PNG)
