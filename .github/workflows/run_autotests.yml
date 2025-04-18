@@ -53,30 +53,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
-
-      - name: Set up Docker Compose
-        run: sudo apt-get install docker-compose
-
       - name: Build containers
-        run: docker compose up -d
-
-      - name: Debug - Show container status
-        run: docker-compose ps -a
-
-      - name: Debug - Show container logs
-        run: docker logs ui_autotests
-
-      - name: Wait for container
-        run: |
-            until docker-compose ps | grep 'ui_autotests' | grep 'Up'; do
-              echo "Waiting for ui_autotests container to be up..."
-              sleep 5
-            done
-
-      - name: Run tests
-        run: docker compose exec -t ui_autotests pytest -n 7 --disable-warnings --alluredir=/res/allure-results --clean-alluredir
+        run: docker compose up
 
       - name: Get Allure data
         run: docker cp $(docker compose ps -q ui_tests):/res/allure-results ./allure-results
