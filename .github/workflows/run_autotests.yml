@@ -56,9 +56,6 @@ jobs:
       - name: Build containers and run tests
         run: docker compose up --abort-on-container-exit
 
-      - name: Get Allure data
-        run: docker cp $(docker compose ps -q ui_tests):/res/allure-results ./allure-results
-
       - name: Generate Allure report
         uses: simple-elf/allure-report-action@v1.9
         if: always()
