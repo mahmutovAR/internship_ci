@@ -40,5 +40,4 @@ Run tests and generate Allure report:
 * `locators/` locators modules
 * `pages/` web pages modules
 * `tests/` test modules
-* `create_env_properties_file.py` info file generating script
 ***
