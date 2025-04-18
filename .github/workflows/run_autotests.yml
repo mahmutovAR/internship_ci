@@ -55,3 +55,20 @@ jobs:
 
       - name: Build and run containers
         run: docker compose up
+        
+      - name: Generate Allure report
+        uses: simple-elf/allure-report-action@v1.9
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_results: ./allure-results
+          allure_history: ./allure-results
+          keep_reports: 300
+
+      - name: Publish Allure report on GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./allure-report
