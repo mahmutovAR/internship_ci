@@ -1,4 +1,4 @@
-# CI Docker autotests
+# CI Docker task
 ***
 
 
@@ -15,8 +15,17 @@ python3 -m pip install -r requirements.txt
 
 
 ## Running tests
+Build and run containers:
+```commandline
+docker compose up
+```
+Run tests:
 ```commandline
 pytest
+```
+Run tests and generate Allure report:
+```commandline
+./run_pytest.sh
 ```
 ***
 
@@ -31,5 +40,4 @@ pytest
 * `locators/` locators modules
 * `pages/` web pages modules
 * `tests/` test modules
-* `create_env_properties_file.py` info file generating script
 ***
