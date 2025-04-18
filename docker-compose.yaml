@@ -4,6 +4,8 @@ services:
     container_name: selenoid_chrome
     ports:
       - "4444:4444"
+    networks:
+      - ui_testing_network
 
   ui_tests:
     build: .
@@ -44,9 +46,15 @@ services:
       ALT_AUTH_COOKIES_USERNAME: ${ALT_AUTH_COOKIES_USERNAME}
       ALT_AUTH_COOKIES_PASSWORD: ${ALT_AUTH_COOKIES_PASSWORD}
 
-    command: pytest -n 7 --disable-warnings --alluredir=/ui_tests/allure-results --clean-alluredir
+#    command: pytest -n 7 --disable-warnings --alluredir=/ui_tests/allure-results --clean-alluredir
     volumes:
       - .:/ui_tests
     depends_on:
       selenoid_chrome:
         condition: service_started
+    networks:
+      - ui_testing_network
+
+networks:
+  ui_testing_network:
+    driver: bridge
