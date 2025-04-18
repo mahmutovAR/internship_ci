@@ -15,6 +15,11 @@ python3 -m pip install -r requirements.txt
 
 
 ## Running tests
+Build and run containers:
+```commandline
+docker compose up
+```
+Run tests:
 ```commandline
 pytest
 ```
