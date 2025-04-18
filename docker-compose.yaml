@@ -47,7 +47,7 @@ services:
       ALT_AUTH_COOKIES_USERNAME: ${ALT_AUTH_COOKIES_USERNAME}
       ALT_AUTH_COOKIES_PASSWORD: ${ALT_AUTH_COOKIES_PASSWORD}
 
-#    command: pytest -n 7 --disable-warnings --alluredir=/ui_tests/allure-results --clean-alluredir
+    command: pytest -n 7 --disable-warnings --alluredir=/ui_tests/allure-results --clean-alluredir
     volumes:
       - .:/ui_tests
     depends_on:
