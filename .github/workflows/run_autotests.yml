@@ -53,8 +53,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build containers
-        run: docker compose up
+      - name: Build containers and run tests
+        run: docker compose up --abort-on-container-exit --exit-code-from ui_autotests
 
       - name: Get Allure data
         run: docker cp $(docker compose ps -q ui_tests):/res/allure-results ./allure-results
